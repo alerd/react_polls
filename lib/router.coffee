@@ -20,7 +20,6 @@ Router.map ->
     waitOn: ->
       Meteor.subscribe 'polls', _id: @params._id
     data: ->
-      console.log @params._id
       Polls.findOne @params._id
 
   @route 'pollPage',
