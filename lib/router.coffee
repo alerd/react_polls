@@ -7,10 +7,6 @@ Router.configure
     ]
 
 Router.map ->
-  @route 'home',
-    path: '/'
-    controller: NewPostsListController
-
   @route 'newPosts',
     path: '/new/:postsLimit?'
     controller: NewPostsListController
@@ -18,6 +14,14 @@ Router.map ->
   @route 'bestPosts',
     path: '/best/:postsLimit?'
     controller: BestPostsListController
+
+  @route 'postEdit',
+    path: '/posts/:_id/edit'
+    waitOn: ->
+      Meteor.subscribe 'posts', _id: @params._id
+    data: ->
+      console.log @params._id
+      Posts.findOne @params._id
 
   @route 'postPage',
     path: '/posts/:_id'
@@ -27,14 +31,13 @@ Router.map ->
     data: ->
       Posts.findOne @params._id
 
-  @route 'postEdit',
-    path: '/posts/:_id/edit'
-    data: ->
-      Posts.findOne @params._id
-
   @route 'postSubmit',
     path: '/submit'
     disableProgress: true
+
+  @route 'home',
+    path: '/'
+    controller: NewPostsListController
 
 
 requireLogin = (pause) ->
