@@ -7,37 +7,37 @@ Router.configure
     ]
 
 Router.map ->
-  @route 'newPosts',
-    path: '/new/:postsLimit?'
-    controller: NewPostsListController
+  @route 'newPolls',
+    path: '/new/:pollsLimit?'
+    controller: NewPollsListController
 
-  @route 'bestPosts',
-    path: '/best/:postsLimit?'
-    controller: BestPostsListController
+  @route 'bestPolls',
+    path: '/best/:pollsLimit?'
+    controller: BestPollsListController
 
-  @route 'postEdit',
-    path: '/posts/:_id/edit'
+  @route 'pollEdit',
+    path: '/polls/:_id/edit'
     waitOn: ->
-      Meteor.subscribe 'posts', _id: @params._id
+      Meteor.subscribe 'polls', _id: @params._id
     data: ->
       console.log @params._id
-      Posts.findOne @params._id
+      Polls.findOne @params._id
 
-  @route 'postPage',
-    path: '/posts/:_id'
+  @route 'pollPage',
+    path: '/polls/:_id'
     waitOn: ->
       Meteor.subscribe 'comments', @params._id
-      Meteor.subscribe 'posts', _id: @params._id
+      Meteor.subscribe 'polls', _id: @params._id
     data: ->
-      Posts.findOne @params._id
+      Polls.findOne @params._id
 
-  @route 'postSubmit',
+  @route 'pollSubmit',
     path: '/submit'
     disableProgress: true
 
   @route 'home',
     path: '/'
-    controller: NewPostsListController
+    controller: NewPollsListController
 
 
 requireLogin = (pause) ->
@@ -52,7 +52,7 @@ requireLogin = (pause) ->
 
 
 Router.before 'loading'
-Router.before requireLogin, only: 'postSubmit'
+Router.before requireLogin, only: 'pollSubmit'
 Router.before ->
   do clearErrors
   do @next

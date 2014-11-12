@@ -1,3 +1,3 @@
-Template.postPage.helpers
+Template.pollPage.helpers
   comments: ->
-    Comments.find postId: @_id
+    Comments.find pollId: @_id

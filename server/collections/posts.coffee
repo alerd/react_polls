@@ -1,24 +1,24 @@
-Posts.allow
+Polls.allow
   update: ownDocument
   remove: ownDocument
 
 
-Posts.deny
-  update: (userId, post, fieldNames) ->
+Polls.deny
+  update: (userId, poll, fieldNames) ->
     _.without(fieldNames, 'url', 'title').length > 0
 
 
 Meteor.methods
-  post: (postAttributes) ->
+  poll: (pollAttributes) ->
     user = do Meteor.user
-    postWithSameLink = Posts.findOne url: postAttributes.url
+    pollWithSameLink = Polls.findOne url: pollAttributes.url
 
-    throw new Meteor.Error 401, "You need to login to post new stories" unless user
-    throw new Meteor.Error 422, 'Please fill in a headline' unless postAttributes.title
-    if postAttributes.url and postWithSameLink
-      throw new Meteor.Error 302, 'This link has already been posted', postWithSameLink._id
+    throw new Meteor.Error 401, "You need to login to poll new stories" unless user
+    throw new Meteor.Error 422, 'Please fill in a headline' unless pollAttributes.title
+    if pollAttributes.url and pollWithSameLink
+      throw new Meteor.Error 302, 'This link has already been polled', pollWithSameLink._id
 
-    post = _.extend _.pick(postAttributes, 'url', 'title', 'message'),
+    poll = _.extend _.pick(pollAttributes, 'url', 'title', 'message'),
       userId: user._id
       author: user.username
       submitted: new Date().getTime()
@@ -26,16 +26,16 @@ Meteor.methods
       upvoters: []
       votes: 0
 
-    Posts.insert post
+    Polls.insert poll
 
 
-  upvote: (postId) ->
+  upvote: (pollId) ->
     user = Meteor.user()
 
     throw new Meteor.Error 401, "Надо залогиниться чтобы голосовать" unless user
 
-    Posts.update
-      _id: postId
+    Polls.update
+      _id: pollId
       upvoters:
         $ne: user._id
     ,

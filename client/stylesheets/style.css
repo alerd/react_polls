@@ -1,5 +1,5 @@
 i
-ck, .main, .post, .comments li, .comment-form {
+ck, .main, .poll, .comments li, .comment-form {
     background: #fff;
     border-radius: 3px;
     padding: 10px;
@@ -15,7 +15,7 @@ body {
     border-radius: 0px 0px 3px 3px;
 }
 #spinner { height: 300px }
-.post {
+.poll {
     *zoom: 1;
     -webkit-transition: all 300ms 0ms;
     -webkit-transition-delay: ease-in;
@@ -25,35 +25,35 @@ body {
     position: relative;
     opacity: 1;
 }
-.post:before, .post:after {
+.poll:before, .poll:after {
     content: "";
     display: table;
 }
-.post:after { clear: both }
-.post.invisible { opacity: 0 }
-.post .upvote {
+.poll:after { clear: both }
+.poll.invisible { opacity: 0 }
+.poll .upvote {
     display: block;
     margin: 7px 12px 0 0;
     float: left;
 }
-.post .post-content { float: left }
-.post .post-content h3 {
+.poll .poll-content { float: left }
+.poll .poll-content h3 {
     margin: 0;
     line-height: 1.4;
     font-size: 18px;
 }
-.post .post-content h3 a {
+.poll .poll-content h3 a {
     display: inline-block;
     margin-right: 5px;
 }
-.post .post-content h3 span {
+.poll .poll-content h3 span {
     font-weight: normal;
     font-size: 14px;
     display: inline-block;
     color: #aaaaaa;
 }
-.post .post-content p { margin: 0 }
-.post .discuss {
+.poll .poll-content p { margin: 0 }
+.poll .discuss {
     display: block;
     float: right;
     margin-top: 7px;
@@ -93,7 +93,7 @@ body {
     text-decoration: none;
     background: rgba(0, 0, 0, 0.1);
 }
-.posts .spinner-container{
+.polls .spinner-container{
   position: relative;
   height: 100px;
 }

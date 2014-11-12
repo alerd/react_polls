@@ -1,43 +1,43 @@
-@PostsListController = RouteController.extend
-  template: 'postsList'
+@PollsListController = RouteController.extend
+  template: 'pollsList'
   increment: 5
 
   limit: ->
-    parseInt @params.postsLimit or @increment
+    parseInt @params.pollsLimit or @increment
 
   findOptions: ->
     sort: @sort
     limit: @limit()
 
   onBeforeAction: ->
-    @postsSub = Meteor.subscribe 'posts', {}, @findOptions()
+    @pollsSub = Meteor.subscribe 'polls', {}, @findOptions()
     do @next
 
-  posts: ->
-    Posts.find {}, @findOptions()
+  polls: ->
+    Polls.find {}, @findOptions()
 
   data: ->
-    hasMore = @posts().fetch().length is @limit()
-    posts: @posts()
-    ready: @postsSub?.ready or yes
+    hasMore = @polls().fetch().length is @limit()
+    polls: @polls()
+    ready: @pollsSub?.ready or yes
     nextPath: if hasMore then @nextPath() else null
     projection: @findOptions()
 
 
-@NewPostsListController = PostsListController.extend
+@NewPollsListController = PollsListController.extend
   sort:
     submitted: -1
     id: -1
 
   nextPath: ->
-    Router.routes.newPosts.path postsLimit: @limit() + @increment
+    Router.routes.newPolls.path pollsLimit: @limit() + @increment
 
 
-@BestPostsListController = PostsListController.extend
+@BestPollsListController = PollsListController.extend
   sort:
     votes: -1
     submitted: -1
-    posts: -1
+    polls: -1
 
   nextPath: ->
-    Router.routes.bestPosts.path postsLimit: @limit() + @increment
+    Router.routes.bestPolls.path pollsLimit: @limit() + @increment

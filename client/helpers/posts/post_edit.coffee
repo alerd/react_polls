@@ -1,22 +1,22 @@
-Template.postEdit.events
+Template.pollEdit.events
   'submit form': (e) ->
     do e.preventDefault
-    currentPostId = @_id;
-    postProperties =
+    currentPollId = @_id;
+    pollProperties =
       url: $(e.target).find('[name=url]').val(),
       title: $(e.target).find('[name=title]').val()
 
-    Posts.update currentPostId, $set: postProperties, (error) ->
+    Polls.update currentPollId, $set: pollProperties, (error) ->
       if error
         throwError error.reason
       else
-        Router.go 'postPage', _id: currentPostId
+        Router.go 'pollPage', _id: currentPollId
 
 
   'click .delete': (e) ->
     do e.preventDefault
 
-    Posts.remove @_id, (error) ->
+    Polls.remove @_id, (error) ->
       if error
         throwError error.reason
     Router.go 'home'

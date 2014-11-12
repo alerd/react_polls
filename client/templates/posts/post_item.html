@@ -1,17 +1,17 @@
-<template name="postItem">
-    <div class="post" {{attributes}}>
+<template name="pollItem">
+    <div class="poll" {{attributes}}>
         <a href="#" class="upvote btn {{upvotedClass}}">⬆</a>
 
-        <div class="post-content">
+        <div class="poll-content">
             <h3><a href="{{url}}">{{title}}</a><span>{{domain}}</span></h3>
 
             <p>
                 {{pluralize votes "vote"}},
                 submitted by {{author}}
-                <a href="{{pathFor 'postPage'}}">{{pluralize commentsCount "comment"}}</a>
-                {{#if ownPost}}<a href="{{pathFor 'postEdit'}}">Edit</a>{{/if}}
+                <a href="{{pathFor 'pollPage'}}">{{pluralize commentsCount "comment"}}</a>
+                {{#if ownPoll}}<a href="{{pathFor 'pollEdit'}}">Edit</a>{{/if}}
             </p>
         </div>
-        <a href="{{pathFor 'postPage'}}" class="discuss btn">Discuss</a>
+        <a href="{{pathFor 'pollPage'}}" class="discuss btn">Discuss</a>
     </div>
 </template>

@@ -1,4 +1,4 @@
-if Posts.find().count() is 0
+if Polls.find().count() is 0
   now = new Date().getTime()
 
   tomId = Meteor.users.insert
@@ -12,7 +12,7 @@ if Posts.find().count() is 0
 
   sacha = Meteor.users.findOne sachaId
 
-  telescopeId = Posts.insert
+  telescopeId = Polls.insert
     title: 'Introducing Telescope'
     userId: sacha._id
     author: sacha.profile.name
@@ -23,20 +23,20 @@ if Posts.find().count() is 0
     votes: 0
 
   Comments.insert
-    postId: telescopeId
+    pollId: telescopeId
     userId: tom._id
     author: tom.profile.name
     submitted: now - 5 * 3600 * 1000
     body: 'Interesting project Sacha, can I get involved?'
 
   Comments.insert
-    postId: telescopeId
+    pollId: telescopeId
     userId: sacha._id
     author: sacha.profile.name
     submitted: now - 3 * 3600 * 1000
     body: 'You sure can Tom!'
 
-  Posts.insert
+  Polls.insert
     title: 'Meteor'
     userId: tom._id
     author: tom.profile.name
@@ -47,7 +47,7 @@ if Posts.find().count() is 0
     votes: 0
 
 
-  Posts.insert
+  Polls.insert
     title: 'The Meteor Book',
     userId: tom._id,
     author: tom.profile.name,
@@ -59,8 +59,8 @@ if Posts.find().count() is 0
 
 
   for i in [0..10]
-    Posts.insert
-      title: "Test post ##{i}"
+    Polls.insert
+      title: "Test poll ##{i}"
       author: sacha.profile.name
       userId: sacha._id
       url: "http://google.com/?q=test-#{i}"

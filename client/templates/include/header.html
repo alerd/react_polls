@@ -10,16 +10,16 @@
 
             <div class="nav-collapse collapse">
                 <ul class="nav">
-                    <li class="{{activeRouteClass 'home' 'newPosts'}}">
-                        <a href="{{pathFor 'newPosts'}}">New</a>
+                    <li class="{{activeRouteClass 'home' 'newPolls'}}">
+                        <a href="{{pathFor 'newPolls'}}">New</a>
                     </li>
-                    <li class="{{activeRouteClass 'bestPosts'}}">
-                        <a href="{{pathFor 'bestPosts'}}">Best</a>
+                    <li class="{{activeRouteClass 'bestPolls'}}">
+                        <a href="{{pathFor 'bestPolls'}}">Best</a>
                     </li>
 
                     {{#if currentUser}}
-                    <li class="{{activeRouteClass 'postSubmit'}}">
-                        <a href="{{pathFor 'postSubmit'}}">Submit post</a>
+                    <li class="{{activeRouteClass 'pollSubmit'}}">
+                        <a href="{{pathFor 'pollSubmit'}}">Submit poll</a>
                     </li>
                     <li class="dropdown">
                         {{> notifications}}

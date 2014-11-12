@@ -3,11 +3,11 @@ Notifications.allow
     fieldNames.length is 1 and fieldNames[0] is 'read' and ownDocument userId, doc
 
 @createCommentNotification = (comment) ->
-  post = Posts.findOne comment.postId
-  if comment.userId isnt post.userId
+  poll = Polls.findOne comment.pollId
+  if comment.userId isnt poll.userId
     Notifications.insert
-      userId: post.userId
-      postId: post._id
+      userId: poll.userId
+      pollId: poll._id
       commentId: comment._id
       commenterName: comment.author
       read: false

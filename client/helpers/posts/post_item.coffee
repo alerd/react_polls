@@ -2,13 +2,13 @@ POST_HEIGHT = 80
 Positions = new Meteor.Collection null
 
 
-Template.postItem.helpers
+Template.pollItem.helpers
   domain: ->
     a = document.createElement 'a'
     a.href = @url
     a.hostname
 
-  ownPost: ->
+  ownPoll: ->
     @userId is do Meteor.userId
 
   upvotedClass: ->
@@ -20,21 +20,21 @@ Template.postItem.helpers
       'disabled'
 
   attributes: ->
-    post = _.extend {}, Positions.findOne(postId: @_id), @
-    newPosition = post._rank * POST_HEIGHT
+    poll = _.extend {}, Positions.findOne(pollId: @_id), @
+    newPosition = poll._rank * POST_HEIGHT
     attributes = {}
 
-    if _.isUndefined post.position
-      attributes.class = 'post invisible'
+    if _.isUndefined poll.position
+      attributes.class = 'poll invisible'
     else
-      offset = post.position - newPosition
+      offset = poll.position - newPosition
       attributes.style = "top: " + offset + "px"
       if offset is 0
-        attributes.class = "post animate"
+        attributes.class = "poll animate"
 
     Meteor.setTimeout ->
       Positions.upsert
-        postId: post._id
+        pollId: poll._id
       ,
         $set:
           position: newPosition
@@ -42,7 +42,7 @@ Template.postItem.helpers
     attributes
 
 
-Template.postItem.events
+Template.pollItem.events
   'click .upvotable': (e) ->
     do e.preventDefault
 

@@ -5,7 +5,7 @@ Template.commentSubmit.events
     $body = $(e.target).find('[name=body]')
     comment =
       body: $body.val(),
-      postId: template.data._id
+      pollId: template.data._id
 
     Meteor.call 'comment', comment, (error) ->
       if error

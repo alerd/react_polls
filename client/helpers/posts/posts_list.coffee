@@ -1,9 +1,9 @@
-Template.postsList.helpers
-  posts: Posts.find {}, @projection
+Template.pollsList.helpers
+  polls: Polls.find {}, @projection
 
-  postsWithRank: ->
-    do @posts.rewind
+  pollsWithRank: ->
+    do @polls.rewind
 
-    @posts.map (post, index) ->
-      post._rank = index
-      post
+    @polls.map (poll, index) ->
+      poll._rank = index
+      poll

@@ -1,3 +1,3 @@
 @Notifications = new Mongo.Collection 'notifications'
 @Comments = new Meteor.Collection 'comments'
-@Posts = new Meteor.Collection 'posts'
+@Polls = new Meteor.Collection 'polls'
