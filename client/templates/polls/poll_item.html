@@ -1,17 +1,17 @@
 <template name="pollItem">
     <div class="poll" {{attributes}}>
-        <a href="#" class="upvote btn {{upvotedClass}}">⬆</a>
+        <a href="#" class="uplike-{{uplikedClass}}"></a>
 
         <div class="poll-content">
             <h3><a href="{{url}}">{{title}}</a><span>{{domain}}</span></h3>
 
             <p>
-                {{pluralizeVote votes}},
-                опублікувано {{author}}
+                <span>{{likes}} сподобалося, </span>
                 <a href="{{pathFor 'pollPage'}}">{{pluralizeComment commentsCount}}</a>
-                {{#if ownPoll}}<a href="{{pathFor 'pollEdit'}}">Редагувати</a>{{/if}}
+                <span id="publishedBy">опублікувано {{author}}</span>
             </p>
         </div>
-        <a href="{{pathFor 'pollPage'}}" class="discuss btn">Переглянути</a>
+        <a href="{{pathFor 'pollPage'}}" class="discuss"></a>
+        {{#if ownPoll}}<a href="{{pathFor 'pollEdit'}}" class="edit"></a>{{/if}}
     </div>
 </template>

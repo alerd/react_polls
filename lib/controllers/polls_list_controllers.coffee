@@ -35,7 +35,7 @@
 
 @BestPollsListController = PollsListController.extend
   sort:
-    votes: -1
+    likes: -1
     submitted: -1
     polls: -1
 

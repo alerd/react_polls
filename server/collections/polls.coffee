@@ -23,24 +23,39 @@ Meteor.methods
       author: user.username
       submitted: new Date().getTime()
       commentsCount: 0
-      upvoters: []
-      votes: 0
+      uplikers: []
+      likes: 0
 
     Polls.insert poll
 
 
-  upvote: (pollId) ->
+  uplike: (pollId) ->
     user = Meteor.user()
 
     throw new Meteor.Error 401, "Потрібно залогінитись щоб голосувати" unless user
 
     Polls.update
       _id: pollId
-      upvoters:
+      uplikers:
         $ne: user._id
     ,
       $addToSet:
-        upvoters: user._id
+        uplikers: user._id
       $inc:
-        votes: 1
+        likes: 1
+
+  dislike: (pollId) ->
+    user = Meteor.user()
+
+    throw new Meteor.Error 401, "Потрібно залогінитись щоб голосувати" unless user
+
+    Polls.update
+      _id: pollId
+      uplikers:
+        $gte: user._id
+    ,
+      $pop:
+        uplikers: user._id
+      $inc:
+        likes: -1
 

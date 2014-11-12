@@ -11,13 +11,12 @@ Template.pollItem.helpers
   ownPoll: ->
     @userId is do Meteor.userId
 
-  upvotedClass: ->
+  uplikedClass: ->
     userId = Meteor.userId()
 
-    if userId and not _.include @upvoters, userId
-      'btn-primary upvotable'
-    else
-      'disabled'
+    if (userId and not _.include @uplikers, userId) or not userId
+      'upvotable'
+    else 'notvotable'
 
   attributes: ->
     poll = _.extend {}, Positions.findOne(pollId: @_id), @
@@ -43,7 +42,12 @@ Template.pollItem.helpers
 
 
 Template.pollItem.events
-  'click .upvotable': (e) ->
+  'click .uplike-upvotable': (e) ->
     do e.preventDefault
 
-    Meteor.call 'upvote', @_id
+    Meteor.call 'uplike', @_id
+
+  'click .uplike-notvotable': (e) ->
+    do e.preventDefault
+
+    Meteor.call 'dislike', @_id

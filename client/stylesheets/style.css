@@ -31,10 +31,21 @@ body {
 }
 .poll:after { clear: both }
 .poll.invisible { opacity: 0 }
-.poll .upvote {
-    display: block;
-    margin: 7px 12px 0 0;
+.poll .uplike-upvotable {
+    background: url("images/not-liked.png") transparent;
+    height: 48px;
+    width: 48px;
+    border: none;
     float: left;
+    margin-right: 10px;
+}
+.poll .uplike-notvotable {
+    background: url("images/liked.png") transparent;
+    height: 48px;
+    width: 48px;
+    border: none;
+    float: left;
+    margin-right: 10px;
 }
 .poll .poll-content { float: left }
 .poll .poll-content h3 {
@@ -54,7 +65,18 @@ body {
 }
 .poll .poll-content p { margin: 0 }
 .poll .discuss {
-    display: block;
+    background: url("images/view.ico") transparent;
+    height: 48px;
+    width: 48px;
+    border: none;
+    float: right;
+    margin-top: 7px;
+}
+.poll .edit {
+    background: url("images/edit.png") transparent;
+    height: 48px;
+    width: 48px;
+    border: none;
     float: right;
     margin-top: 7px;
 }
