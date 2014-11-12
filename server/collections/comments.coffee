@@ -7,9 +7,9 @@ Meteor.methods
     user = Meteor.user()
     poll = Polls.findOne commentAttributes.pollId
 
-    throw new Meteor.Error 401, "You need to login to make comments" unless user
-    throw new Meteor.Error 422, 'Please write some content' unless commentAttributes.body
-    throw new Meteor.Error 422, 'You must comment on a poll' unless poll
+    throw new Meteor.Error 401, "Увійдіть в систему щоб залишати коментарі" unless user
+    throw new Meteor.Error 422, 'Будь ласка, введіть коментар' unless commentAttributes.body
+    throw new Meteor.Error 422, 'Ви повинні прокоментувати' unless poll
 
     comment = _.extend _.pick(commentAttributes, 'pollId', 'body'),
       userId: user._id,
@@ -31,8 +31,8 @@ Meteor.methods
       submitted:
         $gt: commentAttributes.submitted
 
-    throw new Meteor.Error 401, "You need to login to make comments" unless user
-    throw new Meteor.Error 423, 'The comment that is being deleted is locked' if fresherComment
+    throw new Meteor.Error 401, "Увійдіть в систему щоб залишати коментарі" unless user
+    throw new Meteor.Error 423, 'Коментар, який Ви намагаєтеся видалити заблоковано' if fresherComment
 
     Comments.remove commentAttributes._id
     Polls.update commentAttributes.pollId, $inc:

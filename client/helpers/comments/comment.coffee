@@ -10,6 +10,6 @@ Template.comment.events
   'click .delete': (e) ->
     do e.preventDefault
 
-    if confirm 'Remove this comment?'
+    if confirm 'Справді видалити цей коментар?'
       Meteor.call 'remove', @, (error) ->
         throwError error.reason if error

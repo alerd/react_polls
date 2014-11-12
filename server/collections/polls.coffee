@@ -13,10 +13,10 @@ Meteor.methods
     user = do Meteor.user
     pollWithSameLink = Polls.findOne url: pollAttributes.url
 
-    throw new Meteor.Error 401, "You need to login to poll new stories" unless user
-    throw new Meteor.Error 422, 'Please fill in a headline' unless pollAttributes.title
+    throw new Meteor.Error 401, "Увійдіть в систему щоб створити нове опитування" unless user
+    throw new Meteor.Error 422, 'Будь ласка, введіть назву опитування' unless pollAttributes.title
     if pollAttributes.url and pollWithSameLink
-      throw new Meteor.Error 302, 'This link has already been polled', pollWithSameLink._id
+      throw new Meteor.Error 302, 'Це посилання вже було опубліковано', pollWithSameLink._id
 
     poll = _.extend _.pick(pollAttributes, 'url', 'title', 'message'),
       userId: user._id
@@ -32,7 +32,7 @@ Meteor.methods
   upvote: (pollId) ->
     user = Meteor.user()
 
-    throw new Meteor.Error 401, "Надо залогиниться чтобы голосовать" unless user
+    throw new Meteor.Error 401, "Потрібно залогінитись щоб голосувати" unless user
 
     Polls.update
       _id: pollId

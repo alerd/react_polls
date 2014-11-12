@@ -10,6 +10,5 @@ Template.pollSubmit.events
     Meteor.call 'poll', poll, (error, id) ->
       if error
         throwError error.reason
-        Router.go 'pollPage', _id: error.details if error.error is 302
       else
         Router.go 'pollPage', _id: id

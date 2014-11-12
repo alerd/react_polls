@@ -6,12 +6,12 @@
             <h3><a href="{{url}}">{{title}}</a><span>{{domain}}</span></h3>
 
             <p>
-                {{pluralize votes "vote"}},
-                submitted by {{author}}
-                <a href="{{pathFor 'pollPage'}}">{{pluralize commentsCount "comment"}}</a>
-                {{#if ownPoll}}<a href="{{pathFor 'pollEdit'}}">Edit</a>{{/if}}
+                {{pluralizeVote votes}},
+                опублікувано {{author}}
+                <a href="{{pathFor 'pollPage'}}">{{pluralizeComment commentsCount}}</a>
+                {{#if ownPoll}}<a href="{{pathFor 'pollEdit'}}">Редагувати</a>{{/if}}
             </p>
         </div>
-        <a href="{{pathFor 'pollPage'}}" class="discuss btn">Discuss</a>
+        <a href="{{pathFor 'pollPage'}}" class="discuss btn">Переглянути</a>
     </div>
 </template>

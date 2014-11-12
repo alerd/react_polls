@@ -1,6 +1,6 @@
 <template name="notifications">
     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-        Notifications
+        Сповіщення
         {{#if notificationCount}}
         <span class="badge badge-inverse">{{notificationCount}}</span>
         {{/if}}
@@ -12,7 +12,7 @@
         {{> notification}}
         {{/each}}
         {{else}}
-        <li><span>No Notifications</span></li>
+        <li><span>Немає нових сповіщень</span></li>
         {{/if}}
     </ul>
 </template>
@@ -20,7 +20,7 @@
 <template name="notification">
     <li>
         <a href="{{notificationPollPath}}">
-            <strong>{{commenterName}}</strong> commented on your poll
+            <strong>{{commenterName}}</strong> залишвив коментар до Вашого опитування
         </a>
     </li>
 </template>
