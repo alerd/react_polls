@@ -7,3 +7,5 @@ UI.registerHelper 'pluralizeComment', (n) ->
       'коментарів'
 
 Accounts.ui.config passwordSignupFields: 'USERNAME_ONLY'
+
+console.log Meteor.connection

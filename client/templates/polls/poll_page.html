@@ -1,5 +1,15 @@
 <template name="pollPage">
     <div class="pollChartBlock controls">
+        <div class="pollActivity">
+            <p>This is text</p>
+            <p>This is text</p>
+            <p>This is text</p>
+            <p>This is text</p>
+            <p>This is text</p>
+            <p>This is text</p>
+            <p>This is text</p>
+
+        </div>
         <canvas id="pollChart" width="200" height="200"></canvas>
     </div>
     {{> pollItem}}
@@ -10,7 +20,10 @@
     </ul>
     <script type="text/javascript">
         var options = {
-        };
+            animation: false,
+            segmentStrokeWidth : 0,
+            percentageInnerCutout : 25
+        }
 
         var data = [
             {
@@ -23,7 +36,7 @@
                 value: 50,
                 color: "#46BFBD",
                 highlight: "#5AD3D1",
-                label: "Green"
+                label: "Рома"
             },
             {
                 value: 100,
@@ -33,12 +46,23 @@
             }
         ]
 
-        var ctx = document.getElementById("pollChart").getContext("2d");
-        new Chart(ctx).Doughnut(data);
+        var chartElement = document.getElementById("pollChart");
+        var ctx = chartElement.getContext("2d");
+        var theChart = new Chart(ctx).Doughnut(data, options);
+
+        chartElement.onclick = chartElement.onmouseover = chartElement.onmousedown = chartElement.onmouseup = chartEventsHandler;
+
+        function chartEventsHandler(evt) {
+            console.log(evt.type);
+            var activePoints = theChart.getSegmentsAtEvent(evt);
+            console.log(activePoints);
+        }
+
+
     </script>
     {{#if currentUser}}
     {{> commentSubmit}}
     {{else}}
-    <p>Увійдіть в систему щоб залишити коментар</p>
+    <p>Увійдіть в систему щоб залишати коментар</p>
     {{/if}}
 </template>

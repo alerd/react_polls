@@ -1,6 +1,6 @@
 Template.comment.helpers
   submittedText: ->
-    new Date(@submitted).toString()
+    new Date(@submitted).toLocaleString()
   ownCommentAndIsLatest: ->
     @userId is Meteor.userId() and not Comments.findOne submitted:
       $gt: @submitted

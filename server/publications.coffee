@@ -6,3 +6,8 @@ Meteor.publish 'comments', (pollId) ->
 
 Meteor.publish 'notifications', ->
   Notifications.find userId: @userId, read: false
+
+
+
+Meteor.onConnection (conn) ->
+  console.log conn

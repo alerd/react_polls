@@ -21,6 +21,12 @@ body {
 }
 #pollChart {
     float: right;
+    margin: 7px 7px 7px 7px;
+}
+
+.pollActivity {
+    float: left;
+    margin: 7px 7px 7px 25px;
 }
 .poll {
     *zoom: 1;
