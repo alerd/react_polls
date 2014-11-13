@@ -24,11 +24,7 @@ Router.map ->
 
   @route 'pollPage',
     path: '/polls/:_id'
-    waitOn: ->
-      Meteor.subscribe 'comments', @params._id
-      Meteor.subscribe 'polls', _id: @params._id
-    data: ->
-      Polls.findOne @params._id
+    controller: PollPageController
 
   @route 'pollSubmit',
     path: '/submit'

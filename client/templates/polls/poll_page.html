@@ -1,14 +1,9 @@
 <template name="pollPage">
     <div class="pollChartBlock controls">
         <div class="pollActivity">
-            <p>This is text</p>
-            <p>This is text</p>
-            <p>This is text</p>
-            <p>This is text</p>
-            <p>This is text</p>
-            <p>This is text</p>
-            <p>This is text</p>
-
+            {{#each activities}}
+            {{> pollActivity}}
+            {{/each}}
         </div>
         <canvas id="pollChart" width="200" height="200"></canvas>
     </div>
@@ -21,14 +16,14 @@
     <script type="text/javascript">
         var options = {
             animation: false,
-            segmentStrokeWidth : 0,
-            percentageInnerCutout : 25
-        }
+            segmentStrokeWidth: 0,
+            percentageInnerCutout: 25
+        };
 
         var data = [
             {
                 value: 300,
-                color:"#F7464A",
+                color: "#F7464A",
                 highlight: "#FF5A5E",
                 label: "Red"
             },
@@ -44,21 +39,11 @@
                 highlight: "#FFC870",
                 label: "Yellow"
             }
-        ]
+        ];
 
         var chartElement = document.getElementById("pollChart");
         var ctx = chartElement.getContext("2d");
         var theChart = new Chart(ctx).Doughnut(data, options);
-
-        chartElement.onclick = chartElement.onmouseover = chartElement.onmousedown = chartElement.onmouseup = chartEventsHandler;
-
-        function chartEventsHandler(evt) {
-            console.log(evt.type);
-            var activePoints = theChart.getSegmentsAtEvent(evt);
-            console.log(activePoints);
-        }
-
-
     </script>
     {{#if currentUser}}
     {{> commentSubmit}}
