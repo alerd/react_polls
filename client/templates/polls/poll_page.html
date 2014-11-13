@@ -8,11 +8,18 @@
         <canvas id="pollChart" width="200" height="200"></canvas>
     </div>
     {{> pollItem}}
-    <ul class="comments">
-        {{#each comments}}
-        {{> comment}}
-        {{/each}}
-    </ul>
+    <div>
+        {{#if currentUser}}
+        {{> commentSubmit}}
+        {{else}}
+        <p>Увійдіть в систему щоб залишати коментар</p>
+        {{/if}}
+        <ul class="comments">
+            {{#each comments}}
+            {{> comment}}
+            {{/each}}
+        </ul>
+    </div>
     <script type="text/javascript">
         var options = {
             animation: false,
@@ -45,9 +52,4 @@
         var ctx = chartElement.getContext("2d");
         var theChart = new Chart(ctx).Doughnut(data, options);
     </script>
-    {{#if currentUser}}
-    {{> commentSubmit}}
-    {{else}}
-    <p>Увійдіть в систему щоб залишати коментар</p>
-    {{/if}}
 </template>
