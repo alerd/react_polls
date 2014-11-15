@@ -18,6 +18,9 @@
                     </li>
 
                     {{#if currentUser}}
+                    <li class="{{activeRouteClass 'userPolls'}}">
+                        <a href="{{pathFor 'userPolls'}}">Мої</a>
+                    </li>
                     <li class="{{activeRouteClass 'pollSubmit'}}">
                         <a href="{{pathFor 'pollSubmit'}}">Додати опитування</a>
                     </li>

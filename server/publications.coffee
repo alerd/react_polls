@@ -1,6 +1,9 @@
 Meteor.publish 'polls', (criteria, projection)->
   Polls.find criteria, projection
 
+Meteor.publish 'userPolls', (criteria, projection)->
+  Polls.find _.extend(criteria, userId: @userId), projection
+
 Meteor.publish 'comments', (pollId) ->
   Comments.find pollId: pollId
 

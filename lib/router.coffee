@@ -15,6 +15,10 @@ Router.map ->
     path: '/best/:pollsLimit?'
     controller: BestPollsListController
 
+  @route 'userPolls',
+    path: '/my/:pollsLimit?'
+    controller: UserPollsListController
+
   @route 'pollEdit',
     path: '/polls/:_id/edit'
     waitOn: ->

@@ -1,6 +1,7 @@
 @PollsListController = RouteController.extend
   template: 'pollsList'
   increment: 5
+  collection: 'polls'
 
   limit: ->
     parseInt @params.pollsLimit or @increment
@@ -10,7 +11,7 @@
     limit: @limit()
 
   onBeforeAction: ->
-    @pollsSub = Meteor.subscribe 'polls', {}, @findOptions()
+    @pollsSub = Meteor.subscribe @collection, {}, @findOptions()
     do @next
 
   polls: ->
@@ -37,7 +38,15 @@
   sort:
     likes: -1
     submitted: -1
-    polls: -1
 
   nextPath: ->
     Router.routes.bestPolls.path pollsLimit: @limit() + @increment
+
+
+@UserPollsListController = PollsListController.extend
+  collection: 'userPolls'
+  sort:
+    submitted: -1
+
+  nextPath: ->
+    Router.routes.userPolls.path pollsLimit: @limit() + @increment
