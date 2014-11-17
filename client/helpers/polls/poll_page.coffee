@@ -48,7 +48,7 @@ pollActivityHandler = (e) ->
   return unless user = Meteor.user()
   segment = theChart.getSegmentsAtEvent e
   return if (e.type is 'click' or e.type is 'mousedown') and segment?.length is 0
-  #return if (_.include @votedUsers, user._id) and (e.type isnt 'mouseover')
+  return if (_.include @votedUsers, user._id) and (e.type isnt 'mouseover')
 
   message =
     eventType: e.type
@@ -83,7 +83,7 @@ Template.pollPage.events
 
     return unless user = Meteor.user()
     return unless poll
-    #return if _.include poll.votedUsers, user._id
+    return if _.include poll.votedUsers, user._id
 
     message =
       eventType: e.type
