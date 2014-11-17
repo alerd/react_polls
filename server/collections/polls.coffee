@@ -3,28 +3,24 @@ Polls.allow
   remove: ownDocument
 
 
-Polls.deny
-  update: (userId, poll, fieldNames) ->
-    _.without(fieldNames, 'url', 'title').length > 0
-
-
 Meteor.methods
-  poll: (pollAttributes) ->
+  post: (pollAttributes) ->
     user = do Meteor.user
-    pollWithSameLink = Polls.findOne url: pollAttributes.url
+    pollWithSameTitle = Polls.findOne title: pollAttributes.title
 
     throw new Meteor.Error 401, "Увійдіть в систему щоб створити нове опитування" unless user
     throw new Meteor.Error 422, 'Будь ласка, введіть назву опитування' unless pollAttributes.title
-    if pollAttributes.url and pollWithSameLink
-      throw new Meteor.Error 302, 'Це посилання вже було опубліковано', pollWithSameLink._id
+    if pollAttributes.title and pollWithSameTitle
+      throw new Meteor.Error 302, 'Таке голосування вже було опубліковано', pollWithSameTitle._id
 
-    poll = _.extend _.pick(pollAttributes, 'url', 'title', 'message'),
+    poll = _.extend _.pick(pollAttributes, 'title', 'message'),
       userId: user._id
       author: user.username
       submitted: new Date().getTime()
       commentsCount: 0
       uplikers: []
       likes: 0
+      votesNumber: 0
 
     Polls.insert poll
 

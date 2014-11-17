@@ -3,11 +3,10 @@ Template.pollSubmit.events
     do e.preventDefault
 
     poll =
-      url: $(e.target).find('[name=url]').val(),
       title: $(e.target).find('[name=title]').val(),
       message: $(e.target).find('[name=message]').val()
 
-    Meteor.call 'poll', poll, (error, id) ->
+    Meteor.call 'post', poll, (error, id) ->
       if error
         throwError error.reason
       else

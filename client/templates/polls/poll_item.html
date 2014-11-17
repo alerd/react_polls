@@ -3,7 +3,7 @@
         <a href="#" class="uplike-{{uplikedClass}}"></a>
 
         <div class="poll-content">
-            <h3><a href="{{url}}">{{title}}</a><span>{{domain}}</span></h3>
+            <h3><a href="{{pathFor 'pollPage'}}">{{title}}</a><span>{{shortDescription}}</span></h3>
 
             <p>
                 <span>{{likes}} сподобалося, </span>
@@ -11,7 +11,6 @@
                 <span id="publishedBy">опублікувано {{author}}</span>
             </p>
         </div>
-        <a href="{{pathFor 'pollPage'}}" class="discuss"></a>
         {{#if ownPoll}}<a href="{{pathFor 'pollEdit'}}" class="edit"></a>{{/if}}
     </div>
 </template>

@@ -3,8 +3,9 @@ Template.pollEdit.events
     do e.preventDefault
     currentPollId = @_id;
     pollProperties =
-      url: $(e.target).find('[name=url]').val(),
       title: $(e.target).find('[name=title]').val()
+      message: $(e.target).find('[name=message]').val()
+
 
     Polls.update currentPollId, $set: pollProperties, (error) ->
       if error

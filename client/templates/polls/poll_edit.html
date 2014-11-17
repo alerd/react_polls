@@ -1,18 +1,18 @@
 <template name="pollEdit">
     <form class="main">
         <div class="control-group">
-            <label class="control-label" for="url">URL</label>
-
-            <div class="controls">
-                <input name="url" type="text" value="{{url}}" placeholder="Your URL"/>
-            </div>
-        </div>
-
-        <div class="control-group">
             <label class="control-label" for="title">Назва</label>
 
             <div class="controls">
                 <input name="title" type="text" value="{{title}}" placeholder="Назва опитування"/>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label" for="message">Повідомлення</label>
+
+            <div class="controls">
+                <textarea name="message" type="text" value="{{message}}"></textarea>
             </div>
         </div>
 

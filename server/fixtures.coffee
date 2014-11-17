@@ -13,14 +13,15 @@ if Polls.find().count() is 0
   sacha = Meteor.users.findOne sachaId
 
   telescopeId = Polls.insert
-    title: 'Introducing Telescope'
+    title: 'Чи подобається вам цей сайт?'
     userId: sacha._id
     author: sacha.profile.name
-    url: 'http://sachagreif.com/introducing-telescope/'
+    description: 'http://sachagreif.com/introducing-telescope/'
     submitted: now - 7 * 3600 * 1000
     commentsCount: 2
     uplikers: []
     likes: 0
+    votesNumber: 0
 
   Comments.insert
     pollId: telescopeId
@@ -40,32 +41,21 @@ if Polls.find().count() is 0
     title: 'Meteor'
     userId: tom._id
     author: tom.profile.name
-    url: 'http://meteor.com'
+    description: 'http://meteor.com'
     submitted: now - 10 * 3600 * 1000,
     commentsCount: 0
     uplikers: []
     likes: 0
+    votesNumber: 0
 
 
   Polls.insert
     title: 'The Meteor Book',
     userId: tom._id,
     author: tom.profile.name,
-    url: 'http://themeteorbook.com',
+    description: 'http://themeteorbook.com',
     submitted: now - 12 * 3600 * 1000,
     commentsCount: 0
     uplikers: []
     likes: 0
-
-
-  for i in [0..10]
-    Polls.insert
-      title: "Test poll ##{i}"
-      author: sacha.profile.name
-      userId: sacha._id
-      url: "http://google.com/?q=test-#{i}"
-      submitted: now - i * 3600 * 1000,
-      commentsCount: 0
-      uplikers: []
-      likes: 0
-
+    votesNumber: 0

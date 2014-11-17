@@ -3,10 +3,8 @@ Positions = new Meteor.Collection null
 
 
 Template.pollItem.helpers
-  domain: ->
-    a = document.createElement 'a'
-    a.href = @url
-    a.hostname
+  shortDescription: ->
+    "#{@message.slice 0, 20}..."
 
   ownPoll: ->
     @userId is do Meteor.userId
