@@ -12,4 +12,6 @@ sacha:spin
 mrt:accounts-ui-bootstrap-dropdown
 accounts-password
 multiply:iron-router-progress
+reactive-var
+chartjs
 

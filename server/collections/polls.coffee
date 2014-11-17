@@ -55,3 +55,12 @@ Meteor.methods
       $inc:
         likes: -1
 
+  addVote: (pollId, userId) ->
+    Polls.update
+      _id: pollId
+    ,
+      $addToSet:
+        votedUsers: userId
+      $inc:
+        votesNumber: 1
+

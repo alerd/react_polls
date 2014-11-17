@@ -28,3 +28,11 @@ Accounts.ui.config passwordSignupFields: 'USERNAME_ONLY'
     when 2 <= n % 10 <= 4 then 'людини'
     else
       'людей'
+
+@randomColor = ->
+  "##{((1 << 24) * Math.random() | 0).toString 16}"
+
+
+Template.chart.rendered = ->
+  Deps.autorun ->
+    do drawChart

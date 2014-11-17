@@ -30,10 +30,17 @@ body {
     margin: 7px 7px 7px 7px;
 }
 
+.poll-options{
+    float: right;
+    margin: 7px 15px 7px 7px;
+    height: 200px;
+}
+
 .pollActivity {
     float: left;
     margin: 7px 7px 7px 16px;
 }
+
 .poll {
     *zoom: 1;
     -webkit-transition: all 300ms 0ms;
@@ -144,4 +151,11 @@ body {
 .polls .spinner-container{
   position: relative;
   height: 100px;
+}
+
+.fixed-size-square {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
 }

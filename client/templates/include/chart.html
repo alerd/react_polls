@@ -1,0 +1,18 @@
+<template name="chart">
+    <canvas id="pollChart" width="200" height="200"></canvas>
+    <script type="text/javascript">
+        function drawChart() {
+            var options = {
+                animation: false,
+                segmentStrokeWidth: 0,
+                percentageInnerCutout: 25
+            };
+
+            var data = PollOptions.find().fetch();
+
+            var chartElement = document.getElementById("pollChart");
+            var ctx = chartElement.getContext("2d");
+            this.theChart = new Chart(ctx).Doughnut(data, options);
+        }
+    </script>
+</template>

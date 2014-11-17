@@ -1,11 +1,17 @@
 <template name="pollPage">
+
     <div class="pollChartBlock controls">
         <div class="pollActivity">
             {{#each activities}}
             {{> pollActivity}}
             {{/each}}
         </div>
-        <canvas id="pollChart" width="200" height="200"></canvas>
+        {{> chart}}
+        <div class="poll-options controls">
+            {{#each options}}
+            {{> pollOption}}
+            {{/each}}
+        </div>
     </div>
     {{> pollItem}}
     <div>
@@ -20,36 +26,4 @@
             {{/each}}
         </ul>
     </div>
-    <script type="text/javascript">
-        var options = {
-            animation: false,
-            segmentStrokeWidth: 0,
-            percentageInnerCutout: 25
-        };
-
-        var data = [
-            {
-                value: 300,
-                color: "#F7464A",
-                highlight: "#FF5A5E",
-                label: "Red"
-            },
-            {
-                value: 50,
-                color: "#46BFBD",
-                highlight: "#5AD3D1",
-                label: "Рома"
-            },
-            {
-                value: 100,
-                color: "#FDB45C",
-                highlight: "#FFC870",
-                label: "Yellow"
-            }
-        ];
-
-        var chartElement = document.getElementById("pollChart");
-        var ctx = chartElement.getContext("2d");
-        var theChart = new Chart(ctx).Doughnut(data, options);
-    </script>
 </template>

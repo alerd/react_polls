@@ -8,6 +8,7 @@
       sort:
         submitted: -1
       limit: 7
+    Meteor.subscribe 'pollOptions', @params._id
 
   data: ->
     Polls.findOne @params._id

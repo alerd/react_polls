@@ -4,7 +4,7 @@ Positions = new Meteor.Collection null
 
 Template.pollItem.helpers
   shortDescription: ->
-    "#{@message.slice 0, 20}..."
+    if not @message? then '' else "#{(@message.slice 0, 20)}..."
 
   ownPoll: ->
     @userId is do Meteor.userId

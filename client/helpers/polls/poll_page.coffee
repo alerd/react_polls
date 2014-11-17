@@ -48,6 +48,7 @@ pollActivityHandler = (e) ->
   return unless user = Meteor.user()
   segment = theChart.getSegmentsAtEvent e
   return if (e.type is 'click' or e.type is 'mousedown') and segment?.length is 0
+  #return if (_.include @votedUsers, user._id) and (e.type isnt 'mouseover')
 
   message =
     eventType: e.type
@@ -62,11 +63,43 @@ pollActivityHandler = (e) ->
       submitted: new Date().getTime()
       userId: user._id
 
+  if e.type is 'click'
+    pollOption = PollOptions.findOne color: segment[0].fillColor
+    Meteor.call 'addVote', @_id, user._id
+    Meteor.call 'addVoteForOption', pollOption._id, user
+
+  theChart.update()
+
 
 Template.pollPage.events
   'click #pollChart': pollActivityHandler
   'mousedown #pollChart': pollActivityHandler
   'mouseover #pollChart': pollActivityHandler
+
+  'click .fixed-size-square': (e) ->
+    do e.preventDefault
+
+    poll = Polls.findOne @pollId
+
+    return unless user = Meteor.user()
+    return unless poll
+    #return if _.include poll.votedUsers, user._id
+
+    message =
+      eventType: e.type
+      userName: user.username
+      optionValue: @value
+      optionName: @label
+
+    if needToStoreActivity e.type
+      PollActivities.insert
+        pollId: @pollId
+        message: do messages[e.type][_.random 0, messages[e.type].length - 1].bind message
+        submitted: new Date().getTime()
+        userId: user._id
+
+    Meteor.call 'addVote', @pollId, user._id
+    Meteor.call 'addVoteForOption', @_id, user
 
 
 Template.pollPage.helpers
@@ -79,3 +112,7 @@ Template.pollPage.helpers
       submitted: 1
     ,
       limit: 7
+
+  options: ->
+    PollOptions.find {}, sort:
+      value: -1
