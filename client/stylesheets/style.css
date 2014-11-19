@@ -1,5 +1,5 @@
 i
-ck, .main, .poll, .comments li, .comment-form {
+ck, .main, .poll, .comments li, .comment-form, #votedUsersBlock {
     background: #fff;
     border-radius: 3px;
     padding: 10px;
@@ -158,4 +158,10 @@ body {
     width: 16px;
     height: 16px;
     cursor: pointer;
+}
+
+#votedUsersBlock {
+    background: #fff9e6;
+    display: none;
+    text-align: right;
 }

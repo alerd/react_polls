@@ -86,21 +86,30 @@ Template.pollPage.events
     return if _.include poll.votedUsers, user._id
 
     message =
-      eventType: e.type
+      eventType: 'click'
       userName: user.username
       optionValue: @value
       optionName: @label
 
-    if needToStoreActivity e.type
+    if needToStoreActivity 'click'
       PollActivities.insert
         pollId: @pollId
-        message: do messages[e.type][_.random 0, messages[e.type].length - 1].bind message
+        message: do messages['click'][_.random 0, messages['click'].length - 1].bind message
         submitted: new Date().getTime()
         userId: user._id
 
     Meteor.call 'addVote', @pollId, user._id
     Meteor.call 'addVoteForOption', @_id, user
 
+  'mouseover .fixed-size-square': ->
+    votedUsers = @votedUsers.map (user) ->
+      user.username
+    return unless votedUsers.length
+    $('#votedUsers').html "Проголосували: <b>#{votedUsers.join '</b>, <b>'}</b>"
+    $('#votedUsersBlock').show()
+
+  'mouseleave .fixed-size-square': ->
+    $('#votedUsersBlock').hide()
 
 Template.pollPage.helpers
   comments: ->
