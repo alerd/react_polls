@@ -30,7 +30,7 @@ messages =
     ->
       "#{@optionValue} #{pluralizeComment @optionValue} та #{@userName} обирають \"#{@optionName}\"."
     ->
-      "\"Сподіваюся мій голос стане вирішальним\" - подума(в/ла) #{@userName} обираючи \"#{@optionName}\"."
+      "\"мій голос стане вирішальним\" - #{@userName} обираючи \"#{@optionName}\"."
     ->
       "#{@userName} думає, що \"#{@optionName}\" краще, ніж інші варінти."
     ->
